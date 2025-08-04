@@ -1,0 +1,154 @@
+CIFAR-10 Image Classification using a Convolutional Neural Network
+This repository contains a simple, yet effective, Convolutional Neural Network (CNN) built with TensorFlow and Keras to classify images from the CIFAR-10 dataset. This project serves as an excellent starting point for anyone looking to understand the fundamentals of CNNs for computer vision tasks.
+
+🚀 Project Overview
+The goal of this project is to train a CNN to accurately classify 32x32 color images into one of 10 categories from the CIFAR-10 dataset. The process involves data preprocessing, defining a CNN architecture, training the model, and evaluating its performance.
+
+🖼️ Dataset: CIFAR-10
+The CIFAR-10 dataset is a widely used benchmark in computer vision. It consists of 60,000 32x32 color images in 10 classes, with 6,000 images per class. There are 50,000 training images and 10,000 test images.
+
+The 10 classes are:
+
+0: airplane
+
+1: automobile
+
+2: bird
+
+3: cat
+
+4: deer
+
+5: dog
+
+6: frog
+
+7: horse
+
+8: ship
+
+9: truck
+
+🧠 Model Architecture
+The CNN model is built using tf.keras.Sequential and is composed of a series of convolutional, pooling, flattening, and dense layers.
+
+Layers
+Layer Type
+
+Parameters
+
+Activation
+
+Purpose
+
+Conv2D
+
+filters=32, kernel_size=(3,3)
+
+relu
+
+Extracts low-level features like edges and textures.
+
+MaxPooling2D
+
+pool_size=(2,2)
+
+N/A
+
+Downsamples the feature maps, reducing spatial dimensions and computational cost.
+
+Conv2D
+
+filters=64, kernel_size=(3,3)
+
+relu
+
+Extracts more complex features from the downsampled maps.
+
+MaxPooling2D
+
+pool_size=(2,2)
+
+N/A
+
+Further downsamples the feature maps.
+
+Conv2D
+
+filters=64, kernel_size=(3,3)
+
+relu
+
+Continues to refine and extract high-level features.
+
+Flatten
+
+N/A
+
+N/A
+
+Converts the 2D feature maps into a 1D vector to be fed into the dense layers.
+
+Dense
+
+units=64
+
+relu
+
+A fully-connected layer for learning non-linear relationships.
+
+Dense
+
+units=10
+
+softmax
+
+The output layer, producing a probability distribution over the 10 classes.
+
+🛠️ Getting Started
+Follow these instructions to get a copy of the project up and running on your local machine.
+
+Prerequisites
+Python 3.6+
+
+TensorFlow
+
+Keras
+
+Jupyter Notebook (optional, for running the provided code)
+
+Matplotlib
+
+NumPy
+
+Installation
+It is recommended to use a virtual environment.
+
+# Clone the repository
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+
+# Create and activate a virtual environment
+python -m venv venv
+# On Windows
+.\venv\Scripts\activate
+# On macOS/Linux
+source venv/bin/activate
+
+# Install the required libraries
+pip install tensorflow matplotlib numpy
+
+🚀 Usage
+The code provided loads the CIFAR-10 dataset, preprocesses the data (normalization and one-hot encoding), defines the CNN model, and trains it for 5 epochs. You can run the code cell by cell in a Jupyter Notebook to see each step of the process.
+
+📊 Results
+After training for 5 epochs, the model achieved the following performance metrics on the test data:
+
+Test Loss: 1.3281
+
+Test Accuracy: 0.52999997 (approximately 53%)
+
+The validation accuracy was slightly higher, indicating that the model performed slightly better on the validation split of the training data than on the unseen test data.
+
+📜 License
+This project is licensed under the MIT License.

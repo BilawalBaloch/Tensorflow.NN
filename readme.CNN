@@ -148,6 +148,84 @@ Test Loss: 1.3281
 
 Test Accuracy: 0.52999997 (approximately 53%)
 
+.
+.
+.
+.
+.
+NLP
+
+Basic NLP Text Classifier with TensorFlow
+This is a simple Natural Language Processing (NLP) project that demonstrates how to build a text classification model using TensorFlow and Keras. The model is trained to classify short sentences as either "positive" or "negative" based on a small, hardcoded dataset.
+
+Features
+Simple Dataset: The project uses a small, in-memory list of sentences and corresponding labels to make it easy to understand and get started.
+
+Text Preprocessing: It includes steps for tokenization and padding, which are essential for converting raw text into a numerical format that a neural network can process.
+
+Neural Network Model: A basic sequential model is built using an Embedding layer, a GlobalAveragePooling1D layer, and Dense layers. This is a common and effective architecture for simple text classification tasks.
+
+Training and Prediction: The script compiles and trains the model, and then uses it to make predictions on new, unseen sentences.
+
+How to Run
+Prerequisites
+You only need one library to run this project:
+
+tensorflow
+
+You can install it using pip:
+
+pip install tensorflow
+
+Execution
+Save the Python code provided as nlp_project.py.
+
+Open your terminal or command prompt.
+
+Navigate to the directory where you saved the file.
+
+Run the script using the Python interpreter:
+
+python nlp_project.py
+
+The script will print the word index, the padded sequences, a summary of the model, and the final predictions for the test sentences.
+
+Code Explanation
+The script is divided into a few key sections:
+
+Dataset Preparation: A hardcoded list of sentences and their corresponding labels (1 for positive, 0 for negative) is defined.
+
+Tokenization & Padding:
+
+Tokenizer: This class converts each unique word in the dataset into a unique integer.
+
+pad_sequences: This function ensures all sentences have the same length by adding zeros, which is a requirement for the neural network.
+
+Model Architecture:
+
+Embedding: This is the first layer. It learns a dense vector representation for each word.
+
+GlobalAveragePooling1D: This layer averages the word vectors in a sentence to create a single, fixed-length vector.
+
+Dense: These are standard, fully connected layers that perform the final classification.
+
+Training & Evaluation:
+
+model.compile(): Configures the model for training with a specific loss function, optimizer, and metrics.
+
+model.fit(): Trains the model on the prepared dataset for a specified number of epochs.
+
+Prediction: The trained model is used to predict the sentiment of new sentences that it has never seen before.
+
+Potential Enhancements
+This project can be expanded in many ways. You could:
+
+Use a Larger Dataset: Load a real-world dataset, like the IMDb movie reviews, using tensorflow_datasets.
+
+Try Different Architectures: Experiment with more complex layers like LSTM or GRU to see how they affect performance.
+
+Improve Preprocessing: Add more advanced steps like removing punctuation, converting text to lowercase, or using stemming.
+
 The validation accuracy was slightly higher, indicating that the model performed slightly better on the validation split of the training data than on the unseen test data.
 
 📜 License

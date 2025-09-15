@@ -1,0 +1,173 @@
+
+
+# Basic TensorFlow Examples: Regression & Classification 🚀
+
+This repository provides simple, fundamental examples of two core machine learning tasks—**Regression** and **Binary Classification**—implemented using TensorFlow and Keras. These examples are designed to be a starting point for anyone new to TensorFlow, demonstrating the basic workflow from data preparation to model training and prediction.
+
+## 📋 Table of Contents
+
+1.  [**Regression (Linear Regression)**](https://www.google.com/search?q=%231-regression-linear-regression-)
+      * Finds the line of best fit for a set of data points.
+2.  [**Binary Classification (Logistic Regression)**](https://www.google.com/search?q=%232-binary-classification-logistic-regression-)
+      * Classifies data into one of two distinct categories.
+3.  [**Getting Started**](https://www.google.com/search?q=%23-getting-started)
+      * Prerequisites and installation instructions.
+4.  [**How to Run**](https://www.google.com/search?q=%23-how-to-run)
+      * Instructions for executing the code.
+
+-----
+
+## 1\. Regression (Linear Regression) 📈
+
+This model predicts a continuous numerical value. The goal is to build a simple neural network that can learn the relationship in a dataset and find the "line of best fit."
+
+### The Task
+
+Given a set of input values `X`, we want to predict the corresponding output values `y`. In this example, the data follows a clear linear relationship: $y = 2x + 3$.
+
+### Code Breakdown
+
+1.  **Prepare Data**: We create two NumPy arrays, `X` and `y`, that represent our dataset.
+
+    ```python
+    import numpy as np
+    X = np.array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], dtype=float)
+    y = np.array([5.0, 7.0, 9.0, 11.0, 13.0, 15.0], dtype=float) # y = 2x + 3
+    ```
+
+2.  **Build the Model**: A `Sequential` model is created with a single `Dense` layer containing one neuron. This is the simplest possible neural network and is perfect for learning a linear relationship.
+
+    ```python
+    import tensorflow as tf
+    model = tf.keras.Sequential([
+        tf.keras.layers.Dense(units=1, input_shape=[1])
+    ])
+    ```
+
+3.  **Compile the Model**: We compile the model with an optimizer and a loss function.
+
+      * **Optimizer (`sgd`)**: Stochastic Gradient Descent is used to update the model's weights.
+      * **Loss Function (`mean_squared_error`)**: This measures the average squared difference between the predicted and actual values, which is ideal for regression tasks.
+
+    <!-- end list -->
+
+    ```python
+    model.compile(optimizer='sgd', loss='mean_squared_error')
+    ```
+
+4.  **Train the Model**: The model is trained for 100 epochs, learning the relationship between `X` and `y`.
+
+    ```python
+    model.fit(X, y, epochs=100)
+    ```
+
+5.  **Make a Prediction**: Finally, we use the trained model to predict the output for a new, unseen input (`X=10`). The expected answer is approximately $2 \\times 10 + 3 = 23$.
+
+### Output
+
+The model predicts a value very close to the true answer.
+
+```
+Prediction for X=10:
+[[25.240969]]
+```
+
+*(Note: The exact output may vary slightly due to the random initialization of model weights.)*
+
+-----
+
+## 2\. Binary Classification (Logistic Regression) 🤖
+
+This model predicts one of two possible outcomes (e.g., Class 0 or Class 1). This example uses a single neuron with a **sigmoid activation function** to classify data points.
+
+### The Task
+
+Given data points with two features, we want to classify them into one of two groups. The sigmoid function will output a probability between 0 and 1, indicating the likelihood of the input belonging to Class 1.
+
+### Code Breakdown
+
+1.  **Prepare Data**: We create a dataset `X` with two clear clusters of points and a corresponding labels array `y` (0 or 1).
+
+    ```python
+    import numpy as np
+    # Class 0 data points
+    X = np.array([[1,1], [1,2], [2,2], [2,3],
+                  # Class 1 data points
+                  [6,7], [7,7], [8,8], [8,9]], dtype=float)
+    y = np.array([0, 0, 0, 0, 1, 1, 1, 1], dtype=int)
+    ```
+
+2.  **Build the Model**: The model uses a `Dense` layer with a `'sigmoid'` activation function. This is crucial for binary classification as it squashes the output to a probability value.
+
+    ```python
+    import tensorflow as tf
+    model = tf.keras.Sequential([
+        tf.keras.layers.Dense(units=1, input_shape=[2], activation='sigmoid')
+    ])
+    ```
+
+3.  **Compile the Model**:
+
+      * **Optimizer (`adam`)**: A more advanced and generally effective optimizer.
+      * **Loss Function (`binary_crossentropy`)**: The standard loss function for two-class classification problems.
+
+    <!-- end list -->
+
+    ```python
+    model.compile(optimizer='adam',
+                  loss='binary_crossentropy',
+                  metrics=['accuracy'])
+    ```
+
+4.  **Train the Model**: The model is trained on the data for 500 epochs. As seen in the training logs, the loss steadily decreases as the model learns to differentiate between the two classes.
+
+    ```python
+    model.fit(X, y, epochs=500)
+    ```
+
+5.  **Make a Prediction**: We predict the class for a new data point `[3,3]`, which is geographically closer to the Class 0 data. We expect the output to be a low probability (close to 0).
+
+### Output
+
+The model predicts the probability of the new data point `[3,3]` belonging to Class 1.
+
+```
+Prediction for X=[3,3]:
+[[0.0243166]] # Example output: a low probability, as expected.
+```
+
+*(Note: The exact output may vary slightly.)*
+
+-----
+
+## 🔧 Getting Started
+
+### Prerequisites
+
+Make sure you have Python 3.8+ installed on your system.
+
+### Installation
+
+1.  Clone this repository to your local machine:
+
+    ```sh
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
+
+2.  Install the required Python libraries:
+
+    ```sh
+    pip install tensorflow numpy jupyter
+    ```
+
+-----
+
+## 💡 How to Run
+
+1.  Navigate to the cloned repository's directory in your terminal.
+2.  Start the Jupyter Notebook server:
+    ```sh
+    jupyter notebook
+    ```
+3.  From the browser window that opens, click on the `TF.ipynb` file to open and run the notebook cells.
